@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  <strong>Descripcion:</strong>
+  <strong>Descripción:</strong>
   <%= @producto.descripcion %>
 </p>
 
@@ -23,6 +23,11 @@
 <p>
   <strong>Cantidad almacen:</strong>
   <%= @producto.cantidad_almacen %>
+</p>
+
+<p>
+  <strong>Categoría:</strong>
+  <%= @producto.categoria %>
 </p>
 
 <%= link_to 'Edit', edit_producto_path(@producto) %> |

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @pedido.estado %>
+</p>
+
+<p>
+  <strong>Medio pago:</strong>
+  <%= @pedido.medio_pago %>
+</p>
+
+<p>
+  <strong>Direccion envio:</strong>
+  <%= @pedido.direccion_envio %>
+</p>
+
+<p>
+  <strong>Ciudad envio:</strong>
+  <%= @pedido.ciudad_envio %>
+</p>
+
+<p>
+  <strong>Nombre comprador:</strong>
+  <%= @pedido.nombre_comprador %>
+</p>
+
+<%= link_to 'Edit', edit_pedido_path(@pedido) %> |
+<%= link_to 'Back', pedidos_path %>

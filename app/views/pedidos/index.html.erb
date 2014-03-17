@@ -1,0 +1,35 @@
+<h1>Listing pedidos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Estado</th>
+      <th>Medio pago</th>
+      <th>Direccion envio</th>
+      <th>Ciudad envio</th>
+      <th>Nombre comprador</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pedidos.each do |pedido| %>
+      <tr>
+        <td><%= pedido.estado %></td>
+        <td><%= pedido.medio_pago %></td>
+        <td><%= pedido.direccion_envio %></td>
+        <td><%= pedido.ciudad_envio %></td>
+        <td><%= pedido.nombre_comprador %></td>
+        <td><%= link_to 'Show', pedido %></td>
+        <td><%= link_to 'Edit', edit_pedido_path(pedido) %></td>
+        <td><%= link_to 'Destroy', pedido, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pedido', new_pedido_path %>
