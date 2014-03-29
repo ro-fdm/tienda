@@ -2,33 +2,33 @@
 
 <p>
   <strong>Nombre:</strong>
-  <%= @producto.nombre %>
+  <%= @product.name %>
 </p>
 
 <p>
   <strong>Descripción:</strong>
-  <%= @producto.descripcion %>
+  <%= @product.description %>
 </p>
 
 <p>
   <strong>Fecha alta:</strong>
-  <%= @producto.fecha_alta %>
+  <%= @product.creation_date %>
 </p>
 
 <p>
   <strong>Fabricante:</strong>
-  <%= @producto.fabricante %>
+  <%= @product.maker %>
 </p>
 
 <p>
   <strong>Cantidad almacen:</strong>
-  <%= @producto.cantidad_almacen %>
+  <%= @product.stock %>
 </p>
 
 <p>
   <strong>Categoría:</strong>
-  <%= @producto.categoria %>
+  <%= @product.category %>
 </p>
 
-<%= link_to 'Edit', edit_producto_path(@producto) %> |
-<%= link_to 'Back', productos_path %>
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

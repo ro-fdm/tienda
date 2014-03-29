@@ -11,40 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140317230208) do
+ActiveRecord::Schema.define(version: 20140329082627) do
 
   create_table "line_items", force: true do |t|
-    t.string   "producto"
-    t.integer  "cantidad"
-    t.decimal  "precio",      precision: 10, scale: 0
+    t.string   "product"
+    t.integer  "quantity"
+    t.decimal  "price",      precision: 10, scale: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "producto_id"
-    t.integer  "pedido_id"
+    t.integer  "product_id"
+    t.integer  "order_id"
   end
 
-  add_index "line_items", ["pedido_id"], name: "index_line_items_on_pedido_id", using: :btree
-  add_index "line_items", ["producto_id"], name: "index_line_items_on_producto_id", using: :btree
+  add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
+  add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
 
-  create_table "pedidos", force: true do |t|
-    t.string   "estado"
-    t.string   "medio_pago"
-    t.text     "direccion_envio"
-    t.string   "ciudad_envio"
-    t.string   "nombre_comprador"
+  create_table "orders", force: true do |t|
+    t.string   "status"
+    t.string   "payment_method"
+    t.text     "ship_address"
+    t.string   "ship_city"
+    t.string   "client_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "productos", force: true do |t|
-    t.string   "nombre"
-    t.text     "descripcion"
-    t.datetime "fecha_alta"
-    t.text     "fabricante"
-    t.integer  "cantidad_almacen"
+  create_table "products", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "creation_date"
+    t.text     "maker"
+    t.integer  "stock"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "categoria"
+    t.string   "category"
   end
 
 end
