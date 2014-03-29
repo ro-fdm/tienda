@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_products, only: [:new]
   # GET /orders
   # GET /orders.json
   def index
-    @orders = order.all
+    @orders = Order.all
   end
 
   # GET /orders/1
@@ -14,7 +14,8 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = order.new
+    @order = Order.new
+    @order.line_items.build
   end
 
   # GET /orders/1/edit
@@ -69,6 +70,10 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:estado, :medio_pago, :direccion_envio, :ciudad_envio, :client_name)
+      params.require(:order).permit(:status, :payment_method, :ship_address, :ship_city, :client_name, line_items_attributes: [:product_id, :quantity, :price])
+    end
+    
+    def set_products
+    	@products = Product.all
     end
 end
