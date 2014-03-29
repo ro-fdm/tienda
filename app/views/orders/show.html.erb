@@ -17,13 +17,22 @@
 
 <p>
   <strong>Ciudad envio:</strong>
-  <%= @order.city_address %>
+  <%= @order.ship_city %>
 </p>
 
 <p>
   <strong>Nombre comprador:</strong>
   <%= @order.client_name %>
 </p>
+
+<% @order.line_items.each do |line_item|%>
+	<p>
+		<%= line_item.product.name %>
+		x<%= line_item.quantity %>
+		<%= line_item.price %> =
+		<%= line_item.cost %>
+	</p>
+<% end %>
 
 <%= link_to 'Editar', edit_order_path(@order) %> |
 <%= link_to 'Volver', orders_path %>
