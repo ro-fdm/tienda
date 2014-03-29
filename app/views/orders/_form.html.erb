@@ -31,6 +31,17 @@
     <%= f.label :client_name %><br>
     <%= f.text_field :client_name %>
   </div>
+  <hr>
+  <div class='order_line_item'>
+		<%= f.fields_for :line_items do |item_fields| %>
+		  <% @f = item_fields %>
+			<%= render partial: "line_item_fields" %>
+ 
+	  <% end %>  
+	  <input type='button' id='more_line_items' value='Mas'>
+	   <p><%= link_to_add_fields "Añadir Productos", f, :line_items %></p>
+	</div>
+	<hr>
   <div class="actions">
     <%= f.submit %>
   </div>
