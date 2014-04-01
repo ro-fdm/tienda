@@ -35,10 +35,8 @@
   <div class='order_line_item'>
 		<%= f.fields_for :line_items do |item_fields| %>
 		  <% @f = item_fields %>
-			<%= render partial: "line_item_fields" %>
- 
-	  <% end %>  
-	  <input type='button' id='more_line_items' value='Mas'>
+				<%= render "line_item_fields", f: item_fields %>
++	  <% end %>
 	   <p><%= link_to_add_fields "Añadir Productos", f, :line_items %></p>
 	</div>
 	<hr>

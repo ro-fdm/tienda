@@ -11,7 +11,7 @@ module ApplicationHelper
   
     # magia turbia de rails para pintar lo mismo que el fields_for y guardarlo como string
     new_object = f.object.class.reflect_on_association(association).klass.new
-    fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
+    fields = f.fields_for(association, new_object, hidden_field_id: false) do |builder|
       render(association.to_s.singularize + "_fields", :f => builder)
     end
     # pinta un enlace a una funcion js pasandole, el nombre del has_many, y el texto de los campos

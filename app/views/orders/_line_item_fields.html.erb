@@ -1,11 +1,10 @@
-<div class='fields'>    
-        <%= @f.label :product_id, "Producto" %>
-        <%= @f.select(:product_id, @products.map {|p| [ "#{p.name} (#{p.description})", p.id ] })%>
-			  <%= @f.label :quantity, "Cantidad" %>
-			  <%= @f.text_field :quantity %>
-			  <%= @f.label :price, "Precio" %>  
-			  <%= @f.text_field :price %>
-			  <%= @f.hidden_field :id%>
-			  <p><%= link_to_remove_fields("Borrar Producto", @f) %></p>   
-			</p> 
-	</div>
++<div class='fields'>
++        <%= f.label :product_id, "Producto" %>
++        <%= f.select(:product_id, @products.map {|p| [ "#{p.name} (#{p.description})", p.id ] })%>
++			  <%= f.label :quantity, "Cantidad" %>
++			  <%= f.text_field :quantity %>
++			  <%= f.label :price, "Precio" %>
++			  <%= f.text_field :price %>
++			  <%= f.hidden_field :id %>
++			  <p><%= link_to_remove_fields("Borrar Producto", f) %></p>
++			</p>
