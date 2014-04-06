@@ -7,6 +7,7 @@
       <th>Last name</th>
       <th>Email</th>
       <th>Password</th>
+      <th>Password Confirmation</th>
       <th></th>
       <th></th>
       <th></th>
@@ -20,6 +21,7 @@
         <td><%= user.last_name %></td>
         <td><%= user.email %></td>
         <td><%= user.password %></td>
+        <td><%= user.password_confirmation %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
