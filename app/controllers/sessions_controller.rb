@@ -1,12 +1,9 @@
 class SessionsController < ApplicationController
-  before_action :set_session, only: [:show, :edit, :update, :destroy]
-
-
+  before_action :set_session, only: [:show, :edit, :destroy]
 
 
   # GET /sessions/new
   def new
-    @session = Session.new
   end
 
 
@@ -15,17 +12,20 @@ class SessionsController < ApplicationController
   def create
     @session = Session.new(session_params)
 
-    respond_to do |format|
-      if @session.save
-        format.html { redirect_to root_path, notice: 'Session was successfully created.' }
-      else
-        format.html { render action: 'new' }
-      end
-    end
+		user = User.where("name = ? or email = ?", params[:user][:name],  params[:user][:email]).first
+		#seria el equivalente a @user= User.where("name = ? or email = ?", eou.name, eou.email)??
+	
+			if user && user.authenticate(params[:user][:password])
+				@session = Session.new
+				user = @current_user
+				redirect_to root_path, :notice => "Logueado"
+			else
+				format.html { render new, :notice  =>'Datos incorrectos' }
+			end
+
   end
 
  
-
   # DELETE /sessions/1
   # DELETE /sessions/1.json
   def destroy
@@ -44,6 +44,8 @@ class SessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
-      params.require(:session).permit(:name, :email, :password_digest)
+      params.permit(session: :user_id, user_attributes: [:name, :email, :password])
+          puts "8"*80
+      puts session_params.inspect
     end
 end
