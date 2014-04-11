@@ -6,5 +6,4 @@ class User < ActiveRecord::Base
 	validates :password, confirmation: true
   validates :password_confirmation, presence: true
   
-  has_one :session
 end
