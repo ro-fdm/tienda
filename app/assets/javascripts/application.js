@@ -19,15 +19,14 @@ function remove_fields(link) {
   $(link).prev('input[type=hidden]').val('1'); // poner el campo de destryoy a true
   $(link).closest('.fields').hide();           // escoder este line_itmes_field
   //event.preventDefault()                      // no ejecutes la accion normal de enlace 'ir a #'
-  console.log("link ="+ link);
  }
 
 function add_fields(link, association, content) {
- var new_id = new Date().getTime();
- //var regexp = new RegExp("new_" + association, "g")
- var regexp = new RegExp("\\[(\\d)\\]", "g");
- console.log("content ="+ content);
- $(link).before( content.replace(regexp, '['+new_id+']'));
-  console.log("new_id ="+ new_id);
+	 var new_id = new Date().getTime();
+	 //var regexp = new RegExp("new_" + association, "g")
+	 var regexp = new RegExp("\\[(\\d)\\]", "g");
+	 console.log("content ="+ content);
+	 $(link).before( content.replace(regexp, '['+new_id+']'));
+	// $(link).prev('input[type=hidden]').val('1');
 }
 
