@@ -10,15 +10,17 @@ class SessionsController < ApplicationController
   # POST /sessions
   # POST /sessions.json
   def create
-
 		user = User.where("name = ? or email = ?", params[:username], params[:username]  ).first
 		#seria el equivalente a @user= User.where("name = ? or email = ?", eou.name, eou.email)??
 	
 			if user && user.authenticate(params[:password])
+
 				session[:user_id] = user.id
        	cookies[:user_id] = user.id
-				redirect_to root_path, :notice => "Logueado"
+       	flash[:alert] = "Sesion iniciada"
+				redirect_to root_path #, :notice => "Logueado"
 			else
+				 flash.now.alert = "Nombre, email o password incorrectos"
 				 render "new"
 			end
 
