@@ -11,10 +11,14 @@
     </div>
   <% end %>
 
+<%if  (params[:action] == 'edit')%>
   <div class="field">
     <%= f.label :status %><br>
     <%= f.text_field :status %>
   </div>
+  
+<%end %>  
+
   <div class="field">
     <%= f.label :payment_method %><br>
     <%= f.text_field :payment_method %>
@@ -34,9 +38,8 @@
   <hr>
   <div class='order_line_item'>
 		<%= f.fields_for :line_items do |item_fields| %>
-		  <% @f = item_fields %>
 				<%= render "line_item_fields", f: item_fields %>
-+	  <% end %>
+	  <% end %>
 	   <p><%= link_to_add_fields "Añadir Productos", f, :line_items %></p>
 	</div>
 	<hr>
