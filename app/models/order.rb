@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
 	validates :payment_method , inclusion: { in: %w(efectivo tarjeta paypal)}
 	validates :status , inclusion: { in: %w(Pendiente Enviado Recibido)}
 	
-	before_save :status_write, on: :create
+	before_validation :status_write, on: :create
 	
 	private
 	def status_write
