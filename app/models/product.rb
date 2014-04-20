@@ -18,14 +18,18 @@ class Product < ActiveRecord::Base
 	scope :by_maker,-> (maker) {where(maker: maker) unless maker.blank?}
 	
 	scope :min_price, ->(price) {where("price >= ?", price) unless price.blank?}
-	scope :max_price, ->(price) {where("price <= ?", price) unless price.blank?}
+	scope :max_price, lambda {|price| where("price <= ?", price) unless price.blank?}# lambda = ->, stabby operator
 	
 	def self.filter(params)
-		products = Product.all	#cogemos todos los productos
-		products = products.by_category(params[:category]) #les vamos pasando cada filtro
+		#self es por si se hereda, y es self = Product
+		products = self.by_category(params[:category]) #les vamos pasando cada filtro
 		products = products.by_stock(params[:stock])
 		products = products.by_creation_date(params[:creation_date])
 		products = products.by_maker(params[:maker])
-		products = products.min_price(params[:price]).max_price(params[:price])
+    products.min_price(params[:min_price]).max_price(params[:max_price])
+		#no necesito el return ni el igual porqeu siempre se devuelve la ultima linea, salvo retunr incondicional	
 	end
 end
+
+
+
