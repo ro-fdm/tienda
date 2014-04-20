@@ -1,0 +1,32 @@
+<h1>Su pedido:</h1>
+
+<p>Lista de productos:</p>
+
+<% @order.line_items.each do |line_item|%>
+	<p>
+		<%= line_item.product.name %>
+		x<%= line_item.quantity %>
+		<%= line_item.price %> =
+		<%= line_item.cost %>
+	</p>
+	
+<% end %>
+
+<p>Datos del pedido:</p>
+
+<div class="field">
+    <%= label :payment_method %><br>
+    <%= text_field :payment_method %>
+  </div>
+  <div class="field">
+    <%= label :ship_address %><br>
+    <%= text_area :ship_address %>
+  </div>
+  <div class="field">
+    <%= label :ship_city %><br>
+    <%= text_field :ship_city %>
+  </div>
+  <div class="field">
+    <%= label :client_name %><br>
+    <%= text_field :client_name %>
+
