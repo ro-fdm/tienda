@@ -3,6 +3,7 @@ class OrderMailer < ActionMailer::Base
   
   def order_created(order, user)
   	@order = order
-  	mail(to @user.email,  subject:"Nuevo Pedido Tienda online")
+  	@user = user
+  	mail(to: @user.email,  subject:"Nuevo Pedido Tienda online")
   end
 end
