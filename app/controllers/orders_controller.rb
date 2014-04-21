@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :set_products, only: [:new, :edit]
+  before_action :check_user, except: [:index]
   # GET /orders
   # GET /orders.json
   def index
@@ -29,6 +30,7 @@ class OrdersController < ApplicationController
 	
     respond_to do |format|
       if @order.save
+      puts "patatita"
       	OrderMailer.order_created(@order, @current_user).deliver
         format.html { redirect_to @order, notice: 'order was successfully created.' }
         format.json { render action: 'show', status: :created, location: @order }
@@ -77,4 +79,12 @@ class OrdersController < ApplicationController
     def set_products
     	@products = Product.all
     end
+# para comprobar si esta logueado y devolverle adonde estaba   
+    def check_users
+    	unless current_user
+    		redirect_to new_session_path
+#    		cookies[:return_to]= url_for(params)
+    	end
+    end
+    
 end
